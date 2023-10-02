@@ -1,14 +1,17 @@
 const bookList = [];
 
-function Book(title, author, publisher) {
+function Book(title, author, publisher, isRead) {
     this.title = title;
     this.author = author;
     this.publisher = publisher;
-    this.isRead = false;
+    this.isRead = isRead;
 }
 
 const book1 = new Book("Strike of Celeste", "Fiona Maralyn", "CalmPages");
 bookList.push(book1);
+
+const book2 = new Book("Abyss Fading", "Alton Dwain", "NEXTREAD");
+bookList.push(book2);
 
 const bookTable = document.querySelector("table.books>tbody");
 
@@ -37,9 +40,10 @@ window.addEventListener("load", (event) => {
         bookRow.appendChild(bookIsRead);
 
         const markReadCell = document.createElement("td");
-        markReadCell.classList.add("mark-raed");
+        markReadCell.classList.add("mark-read");
         const markReadButton = document.createElement("button");
         markReadButton.textContent = "Mark Read";
+        markReadButton.setAttribute("type", "button");
         markReadCell.appendChild(markReadButton);
         bookRow.appendChild(markReadCell);
         
@@ -48,11 +52,11 @@ window.addEventListener("load", (event) => {
         const removeBookButton = document.createElement("button");
         removeBookButton.textContent = "Remove Book";
         removeBookButton.classList.add("remove-book-button");
+        removeBookButton.setAttribute("type", "button");
         removeBookCell.appendChild(removeBookButton);
         bookRow.appendChild(removeBookCell);
 
         bookTable.appendChild(bookRow);
-
     }
 })
 

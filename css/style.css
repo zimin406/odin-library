@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    padding-left: 5%;
+    padding-top: 60px;
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+
+table.books {
+    width: 70%;
+    margin-left: 5%;
+    margin-top: 32px;
+}
+
+table.books th {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+table.books td {
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding-top: 8px;
+    text-align: center;
+}
+
+
+table.books button {
+    padding: 0.2rem 0.8rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 0.6rem;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: rgb(240, 240, 240)
+}
