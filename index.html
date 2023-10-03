@@ -27,6 +27,27 @@
 
         </tbody>
     </table>
+
     <button class = "add-book-button">Add Book</button>
+
+    <dialog class = "add-book-dialog">
+        <form method = "dialog">
+            <label for = "book-title">Title</label>
+            <input type = "text" id = "book-title" name = "book-title" placeholder= "Title" required>
+
+            <label for = "book-author">Author</label>
+            <input type = "text" id = "book-author" name = "book-author" placeholder = "Author" required> 
+            
+            <label for = "book-publisher">Publisher</label>
+            <input type = "text" id = "book-publisher" name = "book-publisher" placeholder = "Publisher" required>
+
+            <div class = "book-is-read-container">
+                <label for = "book-is-read">Have you read this book?</label>
+                <input type = "checkbox" id = "book-is-read" name = "book-is-read">
+            </div>
+
+            <button type = "submit" class = "add-book-dialog-button">Add Book</button>
+        </form>
+    </dialog>
 </body>
 </html>

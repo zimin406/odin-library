@@ -33,8 +33,7 @@ table.books td {
 }
 
 
-table.books button,
-button.add-book-button {
+button {
     padding: 0.2rem 0.8rem;
     font-size: 1rem;
     font-weight: 400;
@@ -46,4 +45,47 @@ button.add-book-button {
 
 button.add-book-button {
     margin-top: 36px;
+}
+
+
+dialog.add-book-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36%;
+    height: 400px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+dialog.add-book-dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+dialog.add-book-dialog label {
+    font-size: 1.2rem;
+}
+
+dialog.add-book-dialog input[type="text"] {
+    width: 40%;
+    height: 1.4rem;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+dialog.add-book-dialog input[type="checkbox"] {
+    align-self: center;
+}
+
+dialog.add-book-dialog div.book-is-read-container {
+    display: flex;
+    gap: 16px;
+}
+
+button.add-book-dialog-button {
+    align-self: start;
+    margin-top: 2rem;
 }

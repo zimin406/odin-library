@@ -16,6 +16,14 @@ bookList.push(book2);
 
 const bookTable = document.querySelector("table.books>tbody");
 
+const addBookButton = document.querySelector("button.add-book-button");
+
+const addBookDialog = document.querySelector("dialog.add-book-dialog");
+
+const addBookForm = document.querySelector("dialog.add-book-dialog>form");
+
+const addBookDialogButton = document.querySelector("button.add-book-dialog-button");
+
 function displayBooks() {
     for(let i = 0; i < bookList.length; i++) {
         const bookRow = document.createElement("tr");
@@ -84,3 +92,10 @@ window.addEventListener("load", (event) => {
     displayBooks();
 });
 
+addBookButton.addEventListener("click", (event) => {
+    addBookDialog.showModal();
+});
+
+addBookForm.addEventListener("submit", (event) => {
+    console.log("submit");
+});
