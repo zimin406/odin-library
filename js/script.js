@@ -8,11 +8,10 @@ function Book(title, author, publisher, pages, isRead) {
     this.isRead = isRead;
 }
 
-
-const book1 = new Book("Strike of Celeste", "Fiona Maralyn", "CalmPages");
+const book1 = new Book("Strike of Celeste", "Fiona Maralyn", "CalmPages", 128, true);
 bookList.push(book1);
 
-const book2 = new Book("Abyss Fading", "Alton Dwain", "NEXTREAD");
+const book2 = new Book("Abyss Fading", "Alton Dwain", "NEXTREAD", 256, false);
 bookList.push(book2);
 
 const bookTable = document.querySelector("table.books>tbody");
@@ -55,6 +54,11 @@ function displayBooks() {
         bookPublisher.textContent = bookList[i].publisher;
         bookRow.appendChild(bookPublisher);
 
+        const bookPages = document.createElement("td");
+        bookPages.classList.add("book-pages");
+        bookPages.textContent = bookList[i].pages;
+        bookRow.appendChild(bookPages);
+
         const bookIsRead = document.createElement("td");
         bookIsRead.classList.add("book-is-read");
         bookIsRead.textContent = bookList[i].isRead ? "Yes" : "No";
@@ -69,7 +73,7 @@ function displayBooks() {
 
         markReadButton.addEventListener("click", (event) => {
             bookList[i].isRead = !bookList[i].isRead;
-            markReadButton.textContent = bookList[i].isRead ? "Mark Unread" : "Mark Read";
+            refreshBooks();
         });
         markReadCell.appendChild(markReadButton);
         bookRow.appendChild(markReadCell);
@@ -83,10 +87,7 @@ function displayBooks() {
 
         removeBookButton.addEventListener("click", (event) => {
             bookList.splice(i, 1);
-            while (bookTable.children.length > 0) {
-                bookTable.firstChild.remove();
-            }
-            displayBooks();
+            refreshBooks();
         });
 
         removeBookCell.appendChild(removeBookButton);
@@ -97,6 +98,13 @@ function displayBooks() {
         }
         bookTable.appendChild(bookRow);
     }
+}
+
+function refreshBooks() {
+    while (bookTable.children.length > 0) {
+        bookTable.firstChild.remove();
+    }
+    displayBooks();
 }
 
 window.addEventListener("load", (event) => {
@@ -116,10 +124,5 @@ addBookForm.addEventListener("submit", (event) => {
         newBookIsRead.checked
     );
     bookList.push(newBook);
-
-    while (bookTable.children.length > 0) {
-        bookTable.firstChild.remove();
-    }
-
-    displayBooks();
+    refreshBooks();
 });
