@@ -7,6 +7,7 @@ function Book(title, author, publisher, isRead) {
     this.isRead = isRead;
 }
 
+
 const book1 = new Book("Strike of Celeste", "Fiona Maralyn", "CalmPages");
 bookList.push(book1);
 
@@ -15,35 +16,42 @@ bookList.push(book2);
 
 const bookTable = document.querySelector("table.books>tbody");
 
-window.addEventListener("load", (event) => {
-    for(book of bookList) {
+function displayBooks() {
+    for(let i = 0; i < bookList.length; i++) {
         const bookRow = document.createElement("tr");
+        bookRow.setAttribute("data-book-index", i);
 
         const bookTitle = document.createElement("td");
         bookTitle.classList.add("book-title");
-        bookTitle.textContent = book.title;
+        bookTitle.textContent = bookList[i].title;
         bookRow.appendChild(bookTitle);
 
         const bookAuthor = document.createElement("td");
         bookAuthor.classList.add("book-author");
-        bookAuthor.textContent = book.author;
+        bookAuthor.textContent = bookList[i].author;
         bookRow.appendChild(bookAuthor);
 
         const bookPublisher = document.createElement("td");
         bookPublisher.classList.add("book-publisher");
-        bookPublisher.textContent = book.publisher;
+        bookPublisher.textContent = bookList[i].publisher;
         bookRow.appendChild(bookPublisher);
 
         const bookIsRead = document.createElement("td");
         bookIsRead.classList.add("book-is-read");
-        bookIsRead.textContent = book.isRead ? "Yes" : "No";
+        bookIsRead.textContent = bookList[i].isRead ? "Yes" : "No";
         bookRow.appendChild(bookIsRead);
 
         const markReadCell = document.createElement("td");
         markReadCell.classList.add("mark-read");
         const markReadButton = document.createElement("button");
-        markReadButton.textContent = "Mark Read";
+        markReadButton.textContent = bookList[i].isRead ? "Mark Unread" : "Mark Read";
+        markReadButton.classList.add("mark-read-button");
         markReadButton.setAttribute("type", "button");
+
+        markReadButton.addEventListener("click", (event) => {
+            bookList[i].isRead = !bookList[i].isRead;
+            markReadButton.textContent = bookList[i].isRead ? "Mark Unread" : "Mark Read";
+        });
         markReadCell.appendChild(markReadButton);
         bookRow.appendChild(markReadCell);
         
@@ -53,13 +61,26 @@ window.addEventListener("load", (event) => {
         removeBookButton.textContent = "Remove Book";
         removeBookButton.classList.add("remove-book-button");
         removeBookButton.setAttribute("type", "button");
+
+        removeBookButton.addEventListener("click", (event) => {
+            bookList.splice(i, 1);
+            while (bookTable.children.length > 0) {
+                bookTable.firstChild.remove();
+            }
+            displayBooks();
+        });
+
         removeBookCell.appendChild(removeBookButton);
         bookRow.appendChild(removeBookCell);
 
+        for (child of bookRow.childNodes) {
+            child.setAttribute("data-book-index", i);
+        }
         bookTable.appendChild(bookRow);
     }
-})
+}
 
-
-
+window.addEventListener("load", (event) => {
+    displayBooks();
+});
 
