@@ -1,9 +1,10 @@
 const bookList = [];
 
-function Book(title, author, publisher, isRead) {
+function Book(title, author, publisher, pages, isRead) {
     this.title = title;
     this.author = author;
     this.publisher = publisher;
+    this.pages = pages;
     this.isRead = isRead;
 }
 
@@ -21,6 +22,16 @@ const addBookButton = document.querySelector("button.add-book-button");
 const addBookDialog = document.querySelector("dialog.add-book-dialog");
 
 const addBookForm = document.querySelector("dialog.add-book-dialog>form");
+
+const newBookTitle = document.querySelector("dialog.add-book-dialog input#book-title");
+
+const newBookAuthor = document.querySelector("dialog.add-book-dialog input#book-author");
+
+const newBookPublisher = document.querySelector("dialog.add-book-dialog input#book-publisher");
+
+const newBookPages = document.querySelector("dialog.add-book-dialog input#book-pages");
+
+const newBookIsRead = document.querySelector("dialog.add-book-dialog input#book-is-read");
 
 const addBookDialogButton = document.querySelector("button.add-book-dialog-button");
 
@@ -97,5 +108,18 @@ addBookButton.addEventListener("click", (event) => {
 });
 
 addBookForm.addEventListener("submit", (event) => {
-    console.log("submit");
+    const newBook = new Book(
+        newBookTitle.value,
+        newBookAuthor.value,
+        newBookPublisher.value,
+        newBookPages.value,
+        newBookIsRead.checked
+    );
+    bookList.push(newBook);
+
+    while (bookTable.children.length > 0) {
+        bookTable.firstChild.remove();
+    }
+
+    displayBooks();
 });
